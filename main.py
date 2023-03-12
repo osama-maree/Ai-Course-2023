@@ -12,12 +12,12 @@ def dfs(graph,goal):
                 goal = parent[goal]
             path.insert(0, root)
             break
-        if v in visited:         #if visited this node does not visited other time
-            continue
         visited.append(v)        #add current node to visited node
-        for i in graph[v]:       #detection child of this node and append it to temp list
+        for i in graph[v]:
+            if i not in visited:
+
             temp.append(i)
-            parent[i] = v        #for detect parent for child when found goal
+            parent[i] = v
         while temp:
             stack.append(temp.pop())
     return path
