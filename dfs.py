@@ -1,5 +1,3 @@
-
-
 def dfs(graph,goal):
     root = list(graph.keys())[0]
     stack, temp, path, visited = [root], [], [], []
