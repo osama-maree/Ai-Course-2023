@@ -21,5 +21,7 @@ def bfs(graph,goal):
 graph ={1:[2,3] ,2:[5,6],3:[7,8],5:[9],6:[2,5],7:[2,4],8:[1]} #direction graph
 goal = 7
 path,visited=bfs(graph, goal)
-print("found goal  path :",path,"and visited node :",visited,sep=" ",end="*^^*")
-
+if path:
+    print("found goal  path :",path,"and visited node :",visited,sep=" ",end="*^^*")
+else:
+    print("goal not found")

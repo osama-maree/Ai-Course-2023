@@ -21,13 +21,10 @@ def dfs(graph,goal,limit):
 
 
 graph ={1:[2,3] ,2:[5,6],3:[7,8],5:[9],6:[2,5],7:[2,4],8:[10]} #direction graph
-goal,maxD = 2,5
-
-for i in range(1,maxD):
-    path,visited = dfs(graph,goal,i)
-    if path:
-        print("found goal in level :",i,"and path :",path,"and visited node :",visited,sep=" ",end="*^^*")
-        break
+goal,limit = 7,3
+path,visited=dfs(graph, goal,limit)
+if path:
+    print("found goal  path :",path,"and visited node :",visited,sep=" ",end="*^^*")
 else:
     print("goal not found")
 
