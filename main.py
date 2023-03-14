@@ -1,28 +1,25 @@
-def dfs(root,goal,graph,visited,path,limit):
-    if limit > 0:
-        if root in visited:
-            return
-        visited.append(root)
-        if root == goal:
-            path.append(goal)
-            return path
-        for i in graph.get(root,[]):
-                if dfs(i,goal,graph,visited,path,limit-1):
-                    path.insert(0,root)
-                    return path
-
-        return path
+def bfs(graph,goal):
+    root = list(graph.keys())[0]
+    queue, temp, path, visited = [root], [], [], []
+    parent = {root: None}
+    while queue:
+        v = queue.pop(0)
+        if v == goal:
+            while parent[goal]:
+                path.insert(0, goal)
+                goal = parent[goal]
+            path.insert(0, root)
+            break
+        visited.append(v)
+        for i in graph.get(v,[]):
+            if i not in visited:
+                 queue.append(i)
+                 parent[i] = v
+    return path,visited
 
 
 graph ={1:[2,3] ,2:[5,6],3:[7,8],5:[9],6:[2,5],7:[2,4],8:[1]} #direction graph
 goal = 7
-visited, path = [], []
-maxD=4
-for i in range(1,maxD):
-    path = dfs(list(graph.keys())[0],goal,graph,visited,path,i)
-    if path:
-        print("found goal in level :",i,"and path :",path,"and visited node :",visited,sep=" ",end="*^^*")
-        break
-    path,visited=[],[]
-else:
-    print("goal not found")
+path,visited=bfs(graph, goal)
+print("found goal  path :",path,"and visited node :",visited,sep=" ",end="*^^*")
+

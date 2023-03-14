@@ -17,12 +17,13 @@ def dfs(graph,goal):
                  parent[i] = v
         while temp:
             stack.append(temp.pop())
-    return path
+    return path,visited
 
 
 graph ={1:[2,3] ,2:[5,6],3:[7,8],5:[9],6:[2,5],7:[2,4],8:[1]} #direction graph
 goal = 7
-print(dfs(graph, goal))
+path,visited=dfs(graph, goal)
+print("found goal  path :",path,"and visited node :",visited,sep=" ",end="*^^*")
 
 
 
