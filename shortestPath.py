@@ -1,5 +1,5 @@
 
-def uniform_cost_search(goal, graph):
+def shortestPath(goal, graph):
     visited=[]
     queue=[[list(graph.keys())[0]]] # find root for tree here -->its dict the root ->first key
     while queue:
@@ -26,7 +26,7 @@ graph = {'A': ['Y','B','C'],
          'F':['K','L']
         }
 
-path,visited=uniform_cost_search('F',graph)
+path,visited=shortestPath('F',graph)
 
 if path:
     print(("find goal the path is :", path, "and the visited node is :", visited))
