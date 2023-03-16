@@ -25,6 +25,7 @@ graph = {'A': ['Y','B','C'],
          'E': ['F'],
          'F':['K','L']
         }
+
 path,visited=uniform_cost_search('F',graph)
 
 if path:
