@@ -17,7 +17,7 @@ def uniform_cost_search(start, goal, graph):
 
     return (False,False,False)
 
-# print("*"*80,"\n\t\t\t\t\t\t\tOsama Maree\n","*"*80)
+print("*"*80,"\n\t\t\t\t\t\t\tOsama Maree\n","*"*80)
 graph = {'A': {'B':2, 'C':5},
      'B': {'C':2, 'D':5},
      'C': {'D':4, 'G':2},
