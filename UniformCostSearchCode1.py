@@ -6,15 +6,15 @@ def uniform_cost_search(start, goal, graph):
         (cost, node, path) = heapq.heappop(priorityQueue)#return path has smallest cost
         if node not in visited:
             visited.append(node)
-            path=path + [node]    #path.append(node) what is deferent ?????
+            path= path +[node]    #path.append(node) what is deferent  about path=path + [node]?????
             if node == goal:
-                return (cost, path)
+                return (cost, path,visited)
             for i in graph.get(node,[]):
                 if i not in visited:
                     total_cost = cost + graph[node][i]
-                    priorityQueue.append((total_cost, i, path))
+                    heapq.heappush(priorityQueue,(total_cost, i, path))
 
-    return (False,False)
+    return (False,False,False)
 
 # print("*"*80,"\n\t\t\t\t\t\t\tOsama Maree\n","*"*80)
 graph = {'A': {'B':2, 'C':5},
@@ -25,9 +25,9 @@ graph = {'A': {'B':2, 'C':5},
      'F':{'K':3,'L':4}
 
   }
-cost,path = uniform_cost_search('A','F', graph)
+cost,path,visited = uniform_cost_search('A','D', graph)
 if cost:
-    print(("the cost is :",cost," and the path is :",path))
+    print(("the cost is :",cost," and the path is :",path,"and the visited node is :",visited))
 else:
     print('goal is not found')
 
