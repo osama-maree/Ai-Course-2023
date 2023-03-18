@@ -3,11 +3,15 @@ def uniform_cost_search(start, goal, graph):
     visited =[]
     priorityQueue = [(0, start, [])]
     while priorityQueue:
-        (cost, node, path) = heapq.heappop(priorityQueue)#return path has smallest cost
+
+        (cost, node, x) = heapq.heappop(priorityQueue)#return path has smallest cost
+        path=list(x)
         if node not in visited:
             visited.append(node)
-            path= path +[node]    #path.append(node) what is deferent  about path=path + [node]?????
-         #  path.append(node)# this is error while i use path=path+[node] become right ? why
+           # path= path +[node]    #path.append(node) what is deferent  about path=path + [node]?????
+            path.append(node)# this is error while i use path=path+[node] become right ? why
+            #I found it when the addition is used. This works on adding to the original list, and this is wrong. In every case, the list must be updated.
+            #now U can use two approach  and two is right
             if node == goal:
                 return (cost, path,visited)
             for i in graph.get(node,[]):
