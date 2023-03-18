@@ -6,8 +6,8 @@ def uniform_cost_search(start, goal, graph):
         (cost, node, path) = heapq.heappop(priorityQueue)#return path has smallest cost
         if node not in visited:
             visited.append(node)
-          #  path= path +[node]    #path.append(node) what is deferent  about path=path + [node]?????
-            path.append(node)# this is error while i use path=path+[node] become right ? why
+            path= path +[node]    #path.append(node) what is deferent  about path=path + [node]?????
+         #  path.append(node)# this is error while i use path=path+[node] become right ? why
             if node == goal:
                 return (cost, path,visited)
             for i in graph.get(node,[]):
