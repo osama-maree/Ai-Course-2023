@@ -1,27 +1,32 @@
 import  heapq
+
+#under woork not completed
 def Hill_Climbing(start,graph):
-    path,prevNode =[start], [10, start]
-    while 1 :
+    path=[start]
+    visited=[]
+    priorityQueueForNode=[(0,start,path)]
+    while priorityQueueForNode:
         d=graph.get(start,[])
-        priorityQueue=[]
-        if d:
-            for i in d:
-                heapq.heappush(priorityQueue,(d[i],i))
-            (cost, i) = heapq.heappop(priorityQueue)
-            if prevNode[0] >= cost:
-                path = path+ [i]
-                prevNode=[cost,i]
-                start=i
-            else:
-                return  path
-        else:
-            return path
+        visited.append(start)
+        if not d:
+            (cst,node,p)=heapq.heappop(priorityQueueForNode)
+            path=list(p)
+            if node in visited:
+                continue
+            visited.append(node)
+            d=graph.get(node,[])
+            if not d:
+                continue
+        priorityQueue = []
+        for i in d:
+            heapq.heappush(priorityQueue,(d[i],i))
 
-
-
-
-
-
+            heapq.heappush(priorityQueueForNode,(d[i],i,path))
+        (cost, i) = heapq.heappop(priorityQueue)
+        heapq.heappop(priorityQueueForNode)
+        path = path + [i]
+        start=i
+    return  path
 
 
 graph = {'A': {'B':2, 'C':5},

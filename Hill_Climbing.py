@@ -18,12 +18,6 @@ def Hill_Climbing(start,graph):
             return path
 
 
-
-
-
-
-
-
 graph = {'A': {'B':2, 'C':5},
      'B': {'C':2, 'D':5},
      'C': {'D':4, 'G':2},
