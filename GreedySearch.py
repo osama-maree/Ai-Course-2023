@@ -1,11 +1,7 @@
 
 def CostPath(path):
-    Gn=0
-    for (i , cost) in path:
-        Gn+=cost
-    #ABCD   -> get last node D and get H(n) Cost
-    return Gn + heuristic[path[-1][0]]
-def AStarSearch(graph,start,goal):
+    return  heuristic[path[-1][0]]
+def GreedySearch(graph,start,goal):
     if start not in list(graph.keys()):
         return False
     queue=[[(start,0)]]
@@ -37,7 +33,7 @@ heuristic={
     'B':1,
     'L':0
 }
-path = AStarSearch(graph,'A','L')
+path = GreedySearch(graph,'A','L')
 if path:
     print("found Solution :",path)
     print("and the cost is :",CostPath(path))
