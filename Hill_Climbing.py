@@ -18,7 +18,7 @@ def Hill_Climbing(start,graph):
             return path
 
 
-graph = {'A': {'B':2, 'C':5},
+graph = {'A': {'B':2, 'C':5},# this is heur not Gn
      'B': {'C':2, 'D':5},
      'C': {'D':4, 'G':2},
      'D': {'C':6, 'E':4},

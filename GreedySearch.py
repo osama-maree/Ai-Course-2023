@@ -1,10 +1,9 @@
 
-def CostPath(path):
-    return  heuristic[path[-1][0]]
-def GreedySearch(graph,start,goal):
+
+def GreedySearch(graph,start,goal,heuristic):
     if start not in list(graph.keys()):
         return False
-    queue=[[(start,0)]]
+    queue=[[(start,heuristic[start])]]
     visited=[]
     while queue:
         path=queue.pop(0)
@@ -19,7 +18,7 @@ def GreedySearch(graph,start,goal):
             for i in Child:
                 pathnode=path + [(i,Child[i])]
                 queue.append(pathnode)
-        queue.sort(key=CostPath)
+        queue.sort(key=lambda x:heuristic[x[-1][0]])
 graph = {
          'A': {'C':5,'B':1,'K':2},
          'B':{'C':1},
@@ -29,13 +28,12 @@ graph = {
 heuristic={
     'A':6,
     'K':4,
-    'C':3,
+    'C':10,
     'B':1,
     'L':0
 }
-path = GreedySearch(graph,'A','L')
+path = GreedySearch(graph,'A','L',heuristic)
 if path:
     print("found Solution :",path)
-    print("and the cost is :",CostPath(path))
 else:
     print("error message")

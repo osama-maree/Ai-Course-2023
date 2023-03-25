@@ -1,48 +1,44 @@
 
+def CostPath(path):
+    Gn=0
+    for (i , cost) in path:
+        Gn+=cost
+    #ABCD   -> get last node D and get H(n) Cost
+    return Gn + heuristic[path[-1][0]]
 
-
-def Hill_Climbing(graph,start,heuristic):
-    path,PrevNode=[start],[12,start]
-    while 1:
-       child=graph.get(start,[])
-       PQ=[]
-       if child:
-           for i in child:
-               PQ=PQ+[(heuristic[i],i)]
-           PQ.sort()
-           (H,node)=PQ.pop(0)
-           if H <= PrevNode[0]:
-               path=path+[node]
-               PrevNode=[H,node]
-               start=node
-           else:
-               return path
-       else:
-           return path
-
-graph = {'A': {'B', 'C'},
-     'B': {'C', 'D'},
-     'C': {'D', 'G'},
-     'D': {'C', 'E'},
-     'E': {'F','J'},
-     'F':{'K','L'}
-
-  }
+def AStarSearch(graph,start,goal):
+    queue=[[(start,0)]]
+    visited=[]
+    while queue:
+        path=queue.pop(0)
+        node=path[-1][0]
+        if node in visited:
+            continue
+        visited.append(node)
+        if node == goal:
+            return path
+        else:
+            Child=graph.get(node,[])
+            for i in Child:
+                pathnode=path + [(i,Child[i])]
+                queue.append(pathnode)
+        queue.sort(key=CostPath)
+graph = {
+         'A': {'C':5,'B':1,'K':2},
+         'B':{'C':1},
+         'C': {'L':4},
+         'K': {'L':3}
+         }
 heuristic={
-    'A':12,
-    'K':10,
-    'C':11,
-    'B':10,
-    'E':7,
-    'G':6,
-    'F':5,
-    'L':2,
-    'D':11,
-    'J':6
-
+    'A':6,
+    'K':4,
+    'C':3,
+    'B':1,
+    'L':0
 }
-path = Hill_Climbing(graph,'A',heuristic)
+path = AStarSearch(graph,'A','L')
 if path:
     print("found Solution :",path)
+    print("and the cost is :",CostPath(path))
 else:
     print("error message")

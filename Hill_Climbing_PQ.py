@@ -2,7 +2,7 @@
 
 
 def Hill_Climbing(graph,start,heuristic):
-    path,PrevNode=[start],[12,start]
+    path,PrevNode=[start],[heuristic[start],start]
     while 1:
        child=graph.get(start,[])
        PQ=[]
