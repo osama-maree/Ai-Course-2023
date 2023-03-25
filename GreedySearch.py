@@ -20,14 +20,14 @@ def GreedySearch(graph,start,goal,heuristic):
                 queue.append(pathnode)
         queue.sort(key=lambda x:heuristic[x[-1][0]])
 graph = {
-         'A': {'C':5,'B':1,'K':2},
+         'A': {'C':5,'K':2},
          'B':{'C':1},
          'C': {'L':4},
          'K': {'L':3}
          }
 heuristic={
     'A':6,
-    'K':4,
+    'K':11,
     'C':10,
     'B':1,
     'L':0
