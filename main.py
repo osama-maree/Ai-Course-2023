@@ -1,5 +1,5 @@
 
-
+#here write my code
 def BeamSearch(graph,start,goal,heuristic,n):
     queue=[[(start,heuristic[start])]]
     visited=[]

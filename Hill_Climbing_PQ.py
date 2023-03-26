@@ -41,6 +41,7 @@ heuristic={
     'J':6
 
 }
+print("*"*80,"\n\t\t\t\t\t\t\tOsama Maree\n","*"*80)
 path = Hill_Climbing(graph,'A',heuristic)
 if path:
     print("found Solution :",path)

@@ -26,5 +26,5 @@ graph = {'A': {'B':2, 'C':5},# this is heur not Gn
      'F':{'K':3,'L':4}
 
   }
-
+print("*"*80,"\n\t\t\t\t\t\t\tOsama Maree\n","*"*80)
 print(Hill_Climbing('A',graph))  # this first code

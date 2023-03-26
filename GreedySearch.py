@@ -32,6 +32,7 @@ heuristic={
     'B':1,
     'L':0
 }
+print("*"*80,"\n\t\t\t\t\t\t\tOsama Maree\n","*"*80)
 path = GreedySearch(graph,'A','L',heuristic)
 if path:
     print("found Solution :",path)

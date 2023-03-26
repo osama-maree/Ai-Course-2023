@@ -44,6 +44,7 @@ heuristic={
     'L':3,
     'Q':0
 }
+print("*"*80,"\n\t\t\t\t\t\t\tOsama Maree\n","*"*80)
 path = BeamSearch(graph,'A','L',heuristic,3)
 if path:
     print("found Solution :",path)
