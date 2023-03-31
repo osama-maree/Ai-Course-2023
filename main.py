@@ -1,10 +1,18 @@
 
 #here write my code
-def BeamSearch(graph,start,goal,heuristic,n):
-    queue=[[(start,heuristic[start])]]
+
+def HandG(p):
+    Gn=0
+    for i,c in p:
+        Gn=Gn+c
+    return Gn+heuristic[p[-1][0]]
+
+def Astar(graph,start,goal,heuristic):
+
+    Q=[[(start,0)]]
     visited=[]
-    while queue:
-        path=queue.pop(0)
+    while Q:
+        path=Q.pop(0)
         node=path[-1][0]
         if node in visited:
             continue
@@ -12,40 +20,28 @@ def BeamSearch(graph,start,goal,heuristic,n):
         if node == goal:
             return path
         else:
-            Child=graph.get(node,[])
-            PQ=[]
-            for i in Child:
-                pathnode=path + [(i,heuristic[i])]
-                PQ.append(pathnode)
-            PQ.sort(key=lambda x:heuristic[x[-1][0]])
-            for i in range(n):
-                if PQ:
-                   queue.append(PQ.pop(0))
-                else:
-                    break
-        queue.sort(key=lambda x:heuristic[x[-1][0]])
+            child=graph.get(node,[])
+            for i in child:
+                p=path+[(i,child[i])]#grapg[node][i]
+                Q.append(p)
+        Q.sort(key=HandG)
+
 graph = {
-         'A': {'C','B','S'},
-         'B':{'D','F','J'},
-         'F': {'W','Y','Z'},
-         'W': {'L','Q'}
+         'A': {'C':5,'B':1,'K':2},
+         'B':{'C':1},
+         'C': {'L':4},
+         'K': {'L':3}
          }
 heuristic={
     'A':6,
-    'C':9,
-    'B':8,
-    'S':10,
-    'D':7,
-    'F':6,
-    'J':11,
-    'W':10,
-    'Y':6,
-    'Z':7,
-    'L':3,
-    'Q':0
+    'K':4,
+    'C':3,
+    'B':1,
+    'L':0
 }
-path = BeamSearch(graph,'A','L',heuristic,3)
+path = Astar(graph,'A','L',heuristic)
 if path:
     print("found Solution :",path)
+    print("Cost is",HandG(path))
 else:
     print("error message")

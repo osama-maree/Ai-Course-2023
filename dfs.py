@@ -4,13 +4,13 @@ def dfs(graph,goal):
     parent = {root: None}
     while stack:
         v = stack.pop()
+        visited.append(v)
         if v == goal:
             while parent[goal]:
                 path.insert(0, goal)
                 goal = parent[goal]
             path.insert(0, root)
             break
-        visited.append(v)
         for i in graph.get(v,[]):
             if i not in visited:
                  temp.append(i)
@@ -21,8 +21,7 @@ def dfs(graph,goal):
 
 print("*"*80,"\n\t\t\t\t\t\t\tOsama Maree\n","*"*80)
 graph ={1:[2,3] ,2:[5,6],3:[7,8],5:[9],6:[2,5],7:[2,4],8:[1]} #direction graph
-goal = 7
-path,visited=dfs(graph, goal)
+path,visited=dfs(graph, 7)
 print("found goal  path :",path,"and visited node :",visited,sep=" ",end="*^^*")
 
 

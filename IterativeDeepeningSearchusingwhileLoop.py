@@ -4,13 +4,14 @@ def dfs(graph,goal,limit):
     parent = {root: None}
     while stack:
         v,d = stack.pop()
+        visited.append(v)
         if v == goal:
             while parent[goal]:
                 path.insert(0, goal)
                 goal = parent[goal]
             path.insert(0, root)
             break
-        visited.append(v)
+
         for i in graph.get(v,[]):
             if i not in visited and d < limit:
                  temp.append(i)
