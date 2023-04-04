@@ -12,6 +12,7 @@ def AStarSearch(graph,start,goal):
     visited=[]
     while queue:
         path=queue.pop(0)
+        print(path)
         node=path[-1][0]
         if node in visited:
             continue
@@ -25,20 +26,23 @@ def AStarSearch(graph,start,goal):
                 queue.append(pathnode)
         queue.sort(key=CostPath)
 graph = {
-         'A': {'C':5,'B':1,'K':2},
-         'B':{'C':1},
-         'C': {'L':4},
-         'K': {'L':3}
+         'A': {'B':21,'C':22,'D':19},
+         'B':{'C':4,'E':11},
+         'C': {'E':4,'B':4,'F':12,'D':6},
+         'E': {'G':7,'C':4,'F':2},
+    'F':{'D':7,'C':12,'E':2,'G':9}
          }
 heuristic={
-    'A':6,
-    'K':4,
-    'C':3,
-    'B':1,
-    'L':0
+    'A':34,
+    'B':19,
+    'C':14,
+    'D':18,
+    'E':7,
+    'F':9,
+    'G':0
 }
 print("*"*80,"\n\t\t\t\t\t\t\tOsama Maree\n","*"*80)
-path = AStarSearch(graph,'A','L')
+path = AStarSearch(graph,'A','G')
 if path:
     print("found Solution :",path)
     print("and the cost is :",CostPath(path))
